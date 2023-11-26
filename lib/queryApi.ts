@@ -1,5 +1,4 @@
 import openai from "./chatgpt";
-import { OpenAIStream, StreamingTextResponse } from 'ai'
 
 const query = async (prompt: string, model: string) => {
 
@@ -8,7 +7,7 @@ const query = async (prompt: string, model: string) => {
         prompt,
         temperature: 0.9,
         top_p: 1,
-        max_tokens: 1000,
+        max_tokens: 100,
         frequency_penalty: 0,
         presence_penalty: 0,
     })
@@ -18,9 +17,7 @@ const query = async (prompt: string, model: string) => {
                 `ChatGPT was unable to find an answer for that! (Error: ${err.message}`
         )
 
-    const stream = OpenAIStream(res)
-
-    return new StreamingTextResponse(res);
+    return res;
 }
 
 export default query;

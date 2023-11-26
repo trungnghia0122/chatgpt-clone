@@ -18,7 +18,7 @@ export default function Home() {
               <SunIcon className='h-8 w-8' />
               <h2>Examples</h2>
             </div>
-            <div className='space-y-2'>
+            <div className='space-y-2 text-sm'>
               <p className='infoText'>&quot;Expain Something to me&quot;</p>
               <p className='infoText'>&quot;What is the difference between a dog and a cat?&quot;</p>
               <p className='infoText'>&quot;What is the color of the sun?&quot;</p>
@@ -30,7 +30,7 @@ export default function Home() {
               <BoltIcon className='h-8 w-8' />
               <h2>Capabilities</h2>
             </div>
-            <div className='space-y-2'>
+            <div className='space-y-2 text-sm'>
               <p className='infoText'>Change the ChatGPT Model to use</p>
               <p className='infoText'>Messages are stored in Firebase&apos;s Firestore</p>
               <p className='infoText'>Hot toast notifications when ChatGPT is thinking!</p>
@@ -42,7 +42,7 @@ export default function Home() {
               <ExclamationTriangleIcon className='h-8 w-8' />
               <h2>Limitations</h2>
             </div>
-            <div className='space-y-2'>
+            <div className='space-y-2 text-sm'>
               <p className='infoText'>May occasionally generate incorrect information</p>
               <p className='infoText'>May occasionally produce harmful instructions or biased content</p>
               <p className='infoText'>Limited knowledge of world and events after 2021</p>

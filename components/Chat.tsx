@@ -6,6 +6,7 @@ import { useSession } from "next-auth/react";
 import { useCollection } from "react-firebase-hooks/firestore";
 import Message from "./Message";
 import Image from "next/image";
+import chatgptlogo from '@/public/openai-logo.png'
 
 type Props = {
     chatId: string;
@@ -25,10 +26,10 @@ function Chat({ chatId }: Props) {
             {messages?.empty && (
                 <div className="flex flex-col justify-end h-1/2 items-center space-y-4">
                     <Image
-                        className="rounded-full"
-                        src="https://links.papareact.com/2i6"
-                        width={100}
-                        height={100}
+                        className="rounded-full object-fit"
+                        src={chatgptlogo}
+                        width={70}
+                        height={70}
                         alt="logo"
                     />
                     <p className="font-bold text-white text-2xl">How can I help you today?</p>
@@ -36,7 +37,6 @@ function Chat({ chatId }: Props) {
 
 
             )}
-
 
             {messages?.docs.map((message) => (
                 <Message key={message.id} message={message.data()} />

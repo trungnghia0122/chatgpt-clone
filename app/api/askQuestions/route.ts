@@ -3,33 +3,22 @@ import query from '@/lib/queryApi';
 import admin from "firebase-admin"
 import { adminDb } from '@/firebaseAdmin';
 import { NextRequest } from 'next/server';
-
-type Data = {
-    answer: string
-}
+import chatgptlogo from '@/public/openai-logo.png'
 
 export async function POST(req:NextRequest) {
 
-    const { prompt, chatId, model, session } = await req.json()
-
-    if (!prompt) {
-        return new Response(JSON.stringify({ answer: "Please provide a prompt." }))
-    }
-
-    if (!chatId) {
-        return new Response(JSON.stringify({ answer: "Please provide a valid chatID." }))
-    }
+    const { prompt, chatId, model, session } = await req.json();
 
     //chatgpt query
-    const response = await query(prompt, model)
+    const response = await query(prompt, model)                                                                                                                                                                                                                                                                                                                                                                                                             
 
     const message: Message = {
         text: response || "ChatGPT was unable to find an answer for that!",
-        createdAt: admin.firestore.Timestamp.now(),
+        createdAt: admin.firestore.Timestamp.now(),     
         user: {
             _id: "ChatGPT",
             name: "ChatGPT",
-            avatar: "https://links.papareact.com/2i6",
+            avatar: "/openai-logo.png",
         },
     }
 
@@ -42,5 +31,6 @@ export async function POST(req:NextRequest) {
         .add(message)
 
     return new Response(JSON.stringify({ answer: message.text }))
+    
 
 }

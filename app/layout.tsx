@@ -5,6 +5,7 @@ import SideBar from '@/components/SideBar'
 import SessionProvider from '@/components/SessionProvider'
 import { getServerSession } from 'next-auth/next'
 import { Login } from '@/components/Login'
+import ModelSelection from '@/components/ModelSelection'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -27,24 +28,19 @@ export default async function RootLayout({
 
         <SessionProvider session={session}>
           {!session ? (
-            <Login/>
+            <Login />
           ) : (
 
             <div className='flex h-screen overflow-hidden'>
-
-              {/* <div className='min-w-[14rem] h-screen
-                  overflow-y-auto '>
-                
-              </div> */}
-              
               <SideBar />
-
-              {/* ClientProvider - Notifications */}
-
-              <div className='bg-[#343541] flex-1'>
-                {children}
+              <div className='flex-1'>
+                <div className='bg-[#343541] flex flex-col'>
+                  <div className='max-w-[12rem] mt-5'>
+                    <ModelSelection />
+                  </div>
+                  {children}
+                </div>
               </div>
-
             </div>
 
           )}

@@ -37,7 +37,7 @@ function ChatRow({ id }: Props) {
     return (
         <Link href={`/chat/${id}`} className={`max-w-[14rem] chatRow justify-between ${active && 'bg-gray-700/50'} `} >
             <div className="whitespace-nowrap overflow-hidden">
-                <p className="flex-1 inline-flex max-w-[10rem]">{messages?.docs[messages?.docs.length - 1]?.data().text || 'New Chat'}</p>
+                <p className="flex-1 inline-flex max-w-[10rem] text-white ">{messages?.docs[messages?.docs.length - 1]?.data().text || 'New Chat'}</p>
             </div>
             <TrashIcon onClick={removeChat} className='h-5 w-5 text-gray-700 hover:text-red-500' />
         </Link>

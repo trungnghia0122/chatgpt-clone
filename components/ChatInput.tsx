@@ -5,6 +5,7 @@ import { ArrowUpIcon } from '@heroicons/react/24/solid';
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 import { useSession } from 'next-auth/react';
 import { FormEvent, useState } from 'react'
+import useSWR from 'swr';
 
 type Props = {
     chatId: string;
@@ -13,14 +14,16 @@ type Props = {
 function ChatInput({ chatId }: Props) {
 
     const [prompt, setPrompt] = useState("");
+
     const { data: session } = useSession();
 
-    const model = 'text-davinci-003';
+    const { data: model } = useSWR('model', { fallbackData: 'text-davinci-003' })
 
     const sendMessage = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (!prompt) return;
         const input = prompt.trim();
+
         setPrompt("");
 
         const message: Message = {
@@ -53,22 +56,20 @@ function ChatInput({ chatId }: Props) {
 
             if (response.ok) {
                 console.log("successful");
-                // You can also process the response data here if needed
             } else {
                 console.error("Fetch error: ", response.status);
-                // Handle HTTP errors
             }
         } catch (error) {
             console.error("Network error: ", error);
-            // Handle network errors
         }
     }
 
     return (
-        <div className='text-white mr-4 rounded-lg w-[100%] max-w-[50rem] text-sm border-gray-700 border'>
-            <form onSubmit={sendMessage} className='py-2 px-3 space-x-5 flex m-1'>
-                <input className='focus:outline-none flex-1 bg-transparent' value={prompt} onChange={(e) => setPrompt(e.target.value)}
-                    type="text" placeholder='Message ChatGPT...' />
+        <div className='text-white mr-5 rounded-lg w-full max-w-[50rem] text-sm border-gray-700 border'>
+            <form onSubmit={sendMessage} className='py-2 px-3 space-x-5 flex items-center m-1'>
+                <input type='text' className='w-2 resize-none scrollbar-hide focus:outline-none flex-1 bg-transparent' 
+                value={prompt} onChange={(e) => setPrompt(e.target.value)}
+                    placeholder='Message ChatGPT...' />
 
                 <button disabled={!prompt || !session} type='submit' className={`${!prompt ? 'bg-gray-500' : 'bg-white cursor-pointer'} p-2 rounded-lg`}>
                     <ArrowUpIcon className='text-black h-4 w-4' />
