@@ -1,16 +1,8 @@
 import { NextResponse } from 'next/server';
 import openai from '@/lib/chatgpt';
 
-type Option = {
-    value: string;
-    label: string;
-}
+export async function GET() {
 
-type Data = {
-    modelOptions: Option[];
-}
-
-export async function GET(res: NextResponse) {
     const models = await openai.models.list().then((res) => res.data);
 
     const modelOptions = models.map((model) => ({
@@ -18,5 +10,5 @@ export async function GET(res: NextResponse) {
         label: model.id,
     }))
 
-    return new Response(JSON.stringify({ modelOptions }))
+    return NextResponse.json({ modelOptions })
 }

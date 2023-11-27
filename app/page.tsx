@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import { SunIcon } from "@heroicons/react/24/outline";
 import { BoltIcon } from '@heroicons/react/20/solid';
 import { ExclamationTriangleIcon } from '@heroicons/react/24/solid';

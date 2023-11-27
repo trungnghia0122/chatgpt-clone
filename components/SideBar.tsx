@@ -39,14 +39,12 @@ function SideBar() {
     return (
         <div className="flex h-screen bg-[#343541]">
 
-            <div id="sidebar" className={`${isHidden ? 'hidden' : 'scrollbar-hide relative flex flex-col p-4 bg-[#202123]'}`}>
+            <div id="sidebar" className={`${isHidden ? 'hidden' : 'scrollbar-hide relative flex flex-col p-5 bg-[#202123]'}`}>
                 <div className="flex-1">
                     <NewChat />
-
                     {chats?.docs.map(chat => (
                         <ChatRow key={chat.id} id={chat.id} />
                     ))}
-
                 </div>
 
                 {session &&
@@ -57,8 +55,7 @@ function SideBar() {
                     </div>
                 }
             </div>
-
-
+            
             <div className="flex justify-center items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2}
                     stroke="currentColor" onClick={() => setIsHidden(!isHidden)} className="w-7 h-7 text-white hover:cursor-pointer 
