@@ -3,7 +3,6 @@ import query from '@/lib/queryApi';
 import admin from "firebase-admin"
 import { adminDb } from '@/firebaseAdmin';
 import { NextRequest } from 'next/server';
-import chatgptlogo from '@/public/openai-logo.png'
 
 export async function POST(req:NextRequest) {
 
